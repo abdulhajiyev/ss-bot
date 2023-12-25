@@ -1,8 +1,8 @@
 import WebSocket from 'ws';
 
-export async function dex(config) {
+export async function dex(chain) {
   return new Promise((resolve, reject) => {
-    const socketUrl = `wss://io.dexscreener.com/dex/screener/pairs/h24/1?rankBy[key]=trendingScoreH6&rankBy[order]=desc&filters[chainIds][0]=${config.chain}`;
+    const socketUrl = `wss://io.dexscreener.com/dex/screener/pairs/h24/1?rankBy[key]=trendingScoreH6&rankBy[order]=desc&filters[chainIds][0]=${chain}`;
     const header = {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.183'
     };

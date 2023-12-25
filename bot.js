@@ -67,7 +67,7 @@ bot.action(/chart:(.+):(.+)/, async (ctx) => {
 
 bot.command('dex', (ctx) => {
   const input = ctx.message.text;
-  const [, coinInput = 'avax'] = input.split(" ");
+  const [, coinInput = ''] = input.split(" ");
 
   const coinToChainMap = {
     'avax': 'avalanche',
@@ -80,13 +80,9 @@ bot.command('dex', (ctx) => {
   const chain = coinToChainMap[coinInput];
 
   if (!chain) {
-    ctx.reply('Invalid input. Coin must be "avax", "eth", or "sol".');
+    ctx.reply('Invalid input. Coin must be "avax", "eth", "sol", "arb" or "matic"');
     return;
   }
-
-  const config = {
-    chain
-  };
 
   function formatNumber(num) {
     if (num >= 1e9) {
@@ -101,7 +97,7 @@ bot.command('dex', (ctx) => {
     return num.toString();
   }
 
-  dex(config).then(async (output) => {
+  dex(chain).then(async (output) => {
     if (!output) {
       console.error('Error: output from dex(config) is undefined');
       return;
@@ -132,9 +128,9 @@ bot.command('dex', (ctx) => {
 bot.action(/symbol:(.+):(.+)/, async (ctx) => {
   await ctx.deleteMessage();
   const [, pairAddress, chainId] = ctx.match;
-  const pair = await ssPair(pairAddress, chainId);
+  const result = await ssPair(pairAddress, chainId);
   await ctx.replyWithPhoto({ source: 'screenshot.png' }, {
-    caption: pair,
+    caption: `[${result.legendSourceTitle}](${result.swapLink})`,
     parse_mode: 'Markdown'
   });
 });

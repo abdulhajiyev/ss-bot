@@ -18,6 +18,9 @@ export async function ssPair(pairAddress, chainId) {
 
   const legendSourceTitle = await frame.$eval('[data-name="legend-source-title"]', el => el.textContent);
 
+  const swapLink = await page.$eval('a[aria-label="External Link"]', el => el.href);
+  console.log(swapLink);
+
   await page.$eval(`a[href="/${chainId}/${pairAddress}"] span.chakra-text.custom-0 span:nth-child(1)`, (el) => {
     el.textContent = 'CRYPTOLERTO';
   });
@@ -30,5 +33,5 @@ export async function ssPair(pairAddress, chainId) {
 
   await browser.close();
 
-  return legendSourceTitle;
+  return { legendSourceTitle, swapLink };
 }
