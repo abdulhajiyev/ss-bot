@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 
-export async function dex(chain) {
+export async function dexScreener(chain) {
   return new Promise((resolve, reject) => {
     const socketUrl = `wss://io.dexscreener.com/dex/screener/pairs/h24/1?rankBy[key]=trendingScoreH6&rankBy[order]=desc&filters[chainIds][0]=${chain}`;
     const header = {
