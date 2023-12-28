@@ -3,7 +3,7 @@ import { ssPair } from "../functions/ssPair.js";
 import { dexScreener } from "../functions/dexScreener.js";
 import { Markup } from "telegraf";
 
-export async function dexCommand(bot) {
+export default async function dex(bot) {
 	bot.command("dex", (ctx) => {
 		const input = ctx.message.text;
 		const [, coinInput = ""] = input.split(" ");

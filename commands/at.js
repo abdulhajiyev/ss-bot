@@ -7,7 +7,7 @@ const alphatrend_intervals = {
 	"1 Week": "W",
 };
 
-export function atCommand(bot) {
+export default async function at(bot) {
 	bot.command("at", (ctx) => {
 		const input = ctx.message.text;
 		const [, symbol = ""] = input.split(" ");

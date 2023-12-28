@@ -1,7 +1,7 @@
 import { ssChart } from "../functions/ssChart.js";
 import { Markup } from "telegraf";
 
-export async function chartCommand(bot) {
+export default async function chart(bot) {
 	const intervals = {
 		"1 Min": "1",
 		"3 Min": "3",
