@@ -7,5 +7,5 @@ export const commands = {
 	at,
 	chart,
 	dex,
-	salam
+	salam,
 };
